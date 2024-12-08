@@ -1,6 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 
 // TODO: Configure the store to use the reducer from the transactions slice.
-const store = configureStore();
+import transaction from "../features/transactions/transactionsSlice";
 
-export default store;
+export const store = configureStore({
+  reducer: {
+    transaction,
+  },
+});
+
+// export default store;

@@ -1,16 +1,21 @@
 import { useState } from "react";
 
-import { transfer } from "./transactionsSlice";
+// ADDED..
+import { useSelector, useDispatch } from "react-redux";
+import { transfer, deposit, withdrawal } from "./transactionsSlice";
+
 import "./transactions.scss";
 
 /**
  * Allows users to deposit to, withdraw from, and transfer money from their account.
  */
+
 export default function Transactions() {
   // TODO: Get the balance from the Redux store using the useSelector hook
-  const balance = 0;
+  // const balance = 0;
+  const balance = useSelector((state)=>state.transaction.balance);
 
-  const [amountStr, setAmountStr] = useState("0.00");
+  const [amountStr, setAmountStr] = useState("10.00");
   const [recipient, setRecipient] = useState("");
 
   /** Dispatches a transaction action based on the form submission. */
