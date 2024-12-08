@@ -13,10 +13,11 @@ import "./transactions.scss";
 export default function Transactions() {
   // TODO: Get the balance from the Redux store using the useSelector hook
   // const balance = 0;
-  const balance = useSelector((state)=>state.transaction.balance);
+  const balance = useSelector((state) => state.transaction.balance);
 
   const [amountStr, setAmountStr] = useState("10.00");
-  const [recipient, setRecipient] = useState("");
+  const [recipient, setRecipient] = useState("bob");
+  const dispatch = useDispatch();
 
   /** Dispatches a transaction action based on the form submission. */
   const onTransaction = (e) => {
@@ -29,11 +30,30 @@ export default function Transactions() {
     const amount = +amountStr;
 
     // TODO: Dispatch the appropriate transaction action based on `action`
-    if (action === "transfer") {
-      // The `transfer` action is dispatched with a payload containing
-      // the amount and the recipient.
-      dispatch(transfer({ amount, recipient }));
+    switch (action) {
+      case "transfer":
+        dispatch(transfer({ amount, recipient }));
+        break;
+      case "withdraw":
+        dispatch(withdrawal({ amount, recipient }));
+        break;
+      case "deposit":
+        dispatch(deposit({ amount, recipient }));
+        break;
+      default:
+        break;
     }
+    // if (action === "transfer") {
+    //   // The `transfer` action is dispatched with a payload containing
+    //   // the amount and the recipient.
+    //   dispatch(transfer({ amount, recipient }));
+    // }
+    // if (action === "withdraw") {
+    //   console.log("action: widthdraw");
+    // }
+    // if (action === "deposit") {
+    //   console.log("action: deposit");
+    // }
   };
 
   return (
