@@ -27,23 +27,24 @@ export default function Transactions() {
     // It will be either "deposit", "withdraw", or "transfer".
     const action = e.nativeEvent.submitter.name;
 
-    const amount = +amountStr;
-
-    // TODO: Dispatch the appropriate transaction action based on `action`
-    switch (action) {
-      case "transfer":
-        dispatch(transfer({ amount, recipient }));
-        break;
-      case "withdraw":
-        dispatch(withdrawal({ amount, recipient }));
-        break;
-      case "deposit":
-        dispatch(deposit({ amount, recipient }));
-        break;
-      default:
-        break;
+    if(parseInt(amountStr)!==0){
+      const amount = +amountStr;
+      // TODO: Dispatch the appropriate transaction action based on `action`
+      switch (action) {
+        case "transfer":
+          dispatch(transfer({ amount, recipient }));
+          break;
+        case "withdraw":
+          dispatch(withdrawal({ amount, recipient }));
+          break;
+        case "deposit":
+          dispatch(deposit({ amount, recipient }));
+          break;
+        default:
+          break;
+      }
+    };
     }
-  };
 
   return (
     <section className="transactions container">
