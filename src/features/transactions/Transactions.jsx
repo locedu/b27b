@@ -15,8 +15,8 @@ export default function Transactions() {
   // const balance = 0;
   const balance = useSelector((state) => state.transaction.balance);
 
-  const [amountStr, setAmountStr] = useState("10.00");
-  const [recipient, setRecipient] = useState("bob");
+  const [amountStr, setAmountStr] = useState("0.00");
+  const [recipient, setRecipient] = useState("");
   const dispatch = useDispatch();
 
   /** Dispatches a transaction action based on the form submission. */
@@ -43,17 +43,6 @@ export default function Transactions() {
       default:
         break;
     }
-    // if (action === "transfer") {
-    //   // The `transfer` action is dispatched with a payload containing
-    //   // the amount and the recipient.
-    //   dispatch(transfer({ amount, recipient }));
-    // }
-    // if (action === "withdraw") {
-    //   console.log("action: widthdraw");
-    // }
-    // if (action === "deposit") {
-    //   console.log("action: deposit");
-    // }
   };
 
   return (
